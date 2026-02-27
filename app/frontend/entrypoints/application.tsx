@@ -1,7 +1,7 @@
 import './application.css'
 import { createInertiaApp } from '@inertiajs/react'
 import { createRoot } from 'react-dom/client'
-import { resolvePageComponent } from 'vite-plugin-rails'
+import { resolvePageComponent } from 'vite-plugin-ruby'
 
 createInertiaApp({
   title: title => `${title} - Rails Inertia Starter`,

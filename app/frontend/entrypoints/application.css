@@ -1,3 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Tailwind 4 configuration goes here */
+  /* The content paths are now configured via CSS or automatically detected */
+}
