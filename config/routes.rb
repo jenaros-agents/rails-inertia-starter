@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   # Players
   resources :players
 
+  # Matches
+  resources :matches
+
   # Defines the root path route ("/")
   root "home#index"
 end

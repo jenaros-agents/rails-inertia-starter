@@ -4,6 +4,7 @@ class Player < ApplicationRecord
 
   # Associations
   has_many :match_stats, class_name: 'MatchStat', dependent: :destroy
+  has_many :match_penalties, dependent: :destroy
   has_many :gym_lifts, dependent: :destroy
 
   # Validations

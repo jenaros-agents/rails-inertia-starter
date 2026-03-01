@@ -1,6 +1,7 @@
 class MatchStat < ApplicationRecord
-  # Association
+  # Associations
   belongs_to :player
+  belongs_to :match, optional: true
 
   # Validations
   validates :match_date, presence: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_01_211849) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_01_223833) do
   create_table "gym_lifts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "date"
@@ -21,6 +21,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_211849) do
     t.index ["player_id"], name: "index_gym_lifts_on_player_id"
   end
 
+  create_table "match_penalties", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.integer "match_id", null: false
+    t.integer "minute"
+    t.string "penalty_type"
+    t.integer "player_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_match_penalties_on_match_id"
+    t.index ["player_id"], name: "index_match_penalties_on_player_id"
+  end
+
   create_table "match_stats", force: :cascade do |t|
     t.integer "assists"
     t.integer "conversions"
@@ -28,12 +40,27 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_211849) do
     t.integer "drops"
     t.integer "kicks"
     t.date "match_date"
+    t.integer "match_id"
     t.integer "penalties"
     t.integer "player_id", null: false
     t.integer "tackles"
     t.integer "tries"
     t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_match_stats_on_match_id"
     t.index ["player_id"], name: "index_match_stats_on_player_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "away_score"
+    t.datetime "created_at", null: false
+    t.integer "home_score"
+    t.datetime "match_date"
+    t.text "notes"
+    t.string "opponent"
+    t.string "result"
+    t.datetime "updated_at", null: false
+    t.string "venue"
+    t.string "youtube_url"
   end
 
   create_table "players", force: :cascade do |t|
@@ -65,5 +92,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_211849) do
   end
 
   add_foreign_key "gym_lifts", "players"
+  add_foreign_key "match_penalties", "matches"
+  add_foreign_key "match_penalties", "players"
+  add_foreign_key "match_stats", "matches"
   add_foreign_key "match_stats", "players"
 end
