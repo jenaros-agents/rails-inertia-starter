@@ -13,7 +13,7 @@ class Match < ApplicationRecord
   validates :home_score, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :away_score, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :result, inclusion: { in: %w[win loss draw] }, allow_nil: true
-  validates :youtube_url, format: { with: /\A(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+\z/i }, allow_nil: true
+  validates :youtube_url, format: { with: /\A(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+\z/i }, allow_blank: true
 
   # Scopes
   scope :recent, -> { order(match_date: :desc) }

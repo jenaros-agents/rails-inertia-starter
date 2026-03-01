@@ -36,7 +36,7 @@ class MatchesController < ApplicationController
         created_at: @match.created_at,
         updated_at: @match.updated_at
       },
-      match_penalties: @match.match_penalties.chronological.map do |penalty|
+      match_penalties: @match.match_penalties.includes(:player).chronological.map do |penalty|
         {
           id: penalty.id,
           player_id: penalty.player_id,
@@ -46,7 +46,7 @@ class MatchesController < ApplicationController
           description: penalty.description
         }
       end,
-      match_stats: @match.match_stats.map do |stat|
+      match_stats: @match.match_stats.includes(:player).map do |stat|
         {
           id: stat.id,
           player_id: stat.player_id,
@@ -161,6 +161,8 @@ class MatchesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_match
     @match = Match.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to matches_url, alert: 'Match not found.'
   end
 
   # Only allow a list of trusted parameters through.

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_01_223833) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_01_234856) do
   create_table "gym_lifts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "date"
@@ -26,9 +26,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_223833) do
     t.text "description"
     t.integer "match_id", null: false
     t.integer "minute"
-    t.string "penalty_type"
+    t.string "penalty_type", null: false
     t.integer "player_id", null: false
     t.datetime "updated_at", null: false
+    t.index ["match_id", "player_id"], name: "index_match_penalties_on_match_id_and_player_id"
     t.index ["match_id"], name: "index_match_penalties_on_match_id"
     t.index ["player_id"], name: "index_match_penalties_on_player_id"
   end
@@ -54,13 +55,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_223833) do
     t.integer "away_score"
     t.datetime "created_at", null: false
     t.integer "home_score"
-    t.datetime "match_date"
+    t.datetime "match_date", null: false
     t.text "notes"
-    t.string "opponent"
+    t.string "opponent", null: false
     t.string "result"
     t.datetime "updated_at", null: false
-    t.string "venue"
+    t.string "venue", null: false
     t.string "youtube_url"
+    t.index ["match_date"], name: "index_matches_on_match_date"
   end
 
   create_table "players", force: :cascade do |t|
