@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player: one
+  match_date: 2026-03-01
+  tries: 1
+  tackles: 1
+  assists: 1
+  conversions: 1
+  penalties: 1
+  drops: 1
+  kicks: 1
+
+two:
+  player: two
+  match_date: 2026-03-01
+  tries: 1
+  tackles: 1
+  assists: 1
+  conversions: 1
+  penalties: 1
+  drops: 1
+  kicks: 1

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player: one
+  lift_type: MyString
+  weight: 9.99
+  date: 2026-03-01
+
+two:
+  player: two
+  lift_type: MyString
+  weight: 9.99
+  date: 2026-03-01

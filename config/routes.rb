@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resource :registration, only: [:new, :create]
 
+  # Players
+  resources :players
+
   # Defines the root path route ("/")
   root "home#index"
 end
