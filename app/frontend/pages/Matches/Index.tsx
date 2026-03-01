@@ -1,36 +1,14 @@
 import { Head, Link } from '@inertiajs/react'
 import { Button } from '../components/ui/Button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card'
-
-interface Match {
-  id: number
-  opponent: string
-  match_date: string
-  venue: string
-  home_score: number | null
-  away_score: number | null
-  result: string
-  updated_at: string
-}
+import { getResultBadge } from '../../helpers/matchHelpers'
+import type { Match } from '../../types/match'
 
 interface PageProps {
   matches: Match[]
 }
 
 export default function MatchesIndex({ matches }: PageProps) {
-  const getResultBadge = (result: string) => {
-    const styles = {
-      win: 'bg-green-100 text-green-800',
-      loss: 'bg-red-100 text-red-800',
-      draw: 'bg-gray-100 text-gray-800'
-    }
-    return (
-      <span className={`px-2 py-1 rounded-full text-xs font-semibold ${styles[result as keyof typeof styles] || styles.draw}`}>
-        {result.charAt(0).toUpperCase() + result.slice(1)}
-      </span>
-    )
-  }
-
   return (
     <>
       <Head title="Matches" />
@@ -64,8 +42,24 @@ export default function MatchesIndex({ matches }: PageProps) {
             </CardHeader>
             <CardContent>
               {matches.length === 0 ? (
-                <div className="text-center py-12 text-gray-500">
-                  <p className="mb-4">No matches recorded yet</p>
+                <div className="text-center py-16 px-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
+                    <svg
+                      className="w-8 h-8 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">No matches yet</h3>
+                  <p className="text-gray-500 mb-6">Start tracking your rugby journey by recording your first match.</p>
                   <Link href="/matches/new">
                     <Button>Create your first match</Button>
                   </Link>
@@ -75,13 +69,13 @@ export default function MatchesIndex({ matches }: PageProps) {
                   <table className="w-full">
                     <thead>
                       <tr className="border-b">
-                        <th className="text-left py-3 px-4 font-medium text-gray-600">Opponent</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-600">Date</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-600">Venue</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-600">Score</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-600">Result</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-600">Last Updated</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-600">Actions</th>
+                        <th scope="col" className="text-left py-3 px-4 font-medium text-gray-600">Opponent</th>
+                        <th scope="col" className="text-left py-3 px-4 font-medium text-gray-600">Date</th>
+                        <th scope="col" className="text-left py-3 px-4 font-medium text-gray-600">Venue</th>
+                        <th scope="col" className="text-left py-3 px-4 font-medium text-gray-600">Score</th>
+                        <th scope="col" className="text-left py-3 px-4 font-medium text-gray-600">Result</th>
+                        <th scope="col" className="text-left py-3 px-4 font-medium text-gray-600">Last Updated</th>
+                        <th scope="col" className="text-left py-3 px-4 font-medium text-gray-600">Actions</th>
                       </tr>
                     </thead>
                     <tbody>

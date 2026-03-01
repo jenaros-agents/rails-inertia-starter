@@ -2,6 +2,7 @@ import { Head, Link, useForm } from '@inertiajs/react'
 import { Button } from '../components/ui/Button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card'
 import { Alert, AlertDescription } from '../components/ui/Alert'
+import { getResultBadge } from '../../helpers/matchHelpers'
 
 interface MatchPenalty {
   id: number
@@ -158,12 +159,12 @@ function MatchStats({ stats }: { stats: MatchStat[] }) {
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b">
-            <th className="text-left py-2 px-2 font-medium text-gray-600">Player</th>
-            <th className="text-left py-2 px-2 font-medium text-gray-600">Tries</th>
-            <th className="text-left py-2 px-2 font-medium text-gray-600">Tackles</th>
-            <th className="text-left py-2 px-2 font-medium text-gray-600">Assists</th>
-            <th className="text-left py-2 px-2 font-medium text-gray-600">Conversions</th>
-            <th className="text-left py-2 px-2 font-medium text-gray-600">Kicks</th>
+            <th scope="col" className="text-left py-2 px-2 font-medium text-gray-600">Player</th>
+            <th scope="col" className="text-left py-2 px-2 font-medium text-gray-600">Tries</th>
+            <th scope="col" className="text-left py-2 px-2 font-medium text-gray-600">Tackles</th>
+            <th scope="col" className="text-left py-2 px-2 font-medium text-gray-600">Assists</th>
+            <th scope="col" className="text-left py-2 px-2 font-medium text-gray-600">Conversions</th>
+            <th scope="col" className="text-left py-2 px-2 font-medium text-gray-600">Kicks</th>
           </tr>
         </thead>
         <tbody>
@@ -192,19 +193,6 @@ export default function MatchesShow({ match, match_penalties, match_stats, versi
         onSuccess: () => window.location.href = '/matches'
       })
     }
-  }
-
-  const getResultBadge = (result: string) => {
-    const styles = {
-      win: 'bg-green-100 text-green-800',
-      loss: 'bg-red-100 text-red-800',
-      draw: 'bg-gray-100 text-gray-800'
-    }
-    return (
-      <span className={`px-3 py-1 rounded-full text-sm font-semibold ${styles[result as keyof typeof styles] || styles.draw}`}>
-        {result.charAt(0).toUpperCase() + result.slice(1)}
-      </span>
-    )
   }
 
   return (
