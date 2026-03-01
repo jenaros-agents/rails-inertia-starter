@@ -12,6 +12,15 @@ export default defineConfig({
       '@': '/app/frontend',
     },
   },
+  server: {
+    allowedHosts: true,
+    cors: true,
+    origin: 'http://localhost:3000',
+    strictPort: false,
+    watch: {
+      usePolling: false,
+    },
+  },
   build: {
     rollupOptions: {
       external: ['vite-plugin-ruby'],
