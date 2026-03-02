@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_01_211849) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_01_234856) do
   create_table "gym_lifts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "date"
@@ -18,7 +18,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_211849) do
     t.integer "player_id", null: false
     t.datetime "updated_at", null: false
     t.decimal "weight"
-    t.index ["player_id"], name: "index_gym_lifts_on_player_id"
+    t.index [ "player_id" ], name: "index_gym_lifts_on_player_id"
+  end
+
+  create_table "match_penalties", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.integer "match_id", null: false
+    t.integer "minute"
+    t.string "penalty_type", null: false
+    t.integer "player_id", null: false
+    t.datetime "updated_at", null: false
+    t.index [ "match_id", "player_id" ], name: "index_match_penalties_on_match_id_and_player_id"
+    t.index [ "match_id" ], name: "index_match_penalties_on_match_id"
+    t.index [ "player_id" ], name: "index_match_penalties_on_player_id"
   end
 
   create_table "match_stats", force: :cascade do |t|
@@ -28,12 +41,28 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_211849) do
     t.integer "drops"
     t.integer "kicks"
     t.date "match_date"
+    t.integer "match_id"
     t.integer "penalties"
     t.integer "player_id", null: false
     t.integer "tackles"
     t.integer "tries"
     t.datetime "updated_at", null: false
-    t.index ["player_id"], name: "index_match_stats_on_player_id"
+    t.index [ "match_id" ], name: "index_match_stats_on_match_id"
+    t.index [ "player_id" ], name: "index_match_stats_on_player_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "away_score"
+    t.datetime "created_at", null: false
+    t.integer "home_score"
+    t.datetime "match_date", null: false
+    t.text "notes"
+    t.string "opponent", null: false
+    t.string "result"
+    t.datetime "updated_at", null: false
+    t.string "venue", null: false
+    t.string "youtube_url"
+    t.index [ "match_date" ], name: "index_matches_on_match_date"
   end
 
   create_table "players", force: :cascade do |t|
@@ -51,7 +80,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_211849) do
     t.string "email", null: false
     t.string "password_digest", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index [ "email" ], name: "index_users_on_email", unique: true
   end
 
   create_table "versions", force: :cascade do |t|
@@ -61,9 +90,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_211849) do
     t.string "item_type", null: false
     t.text "object", limit: 1073741823
     t.string "whodunnit"
-    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.index [ "item_type", "item_id" ], name: "index_versions_on_item_type_and_item_id"
   end
 
   add_foreign_key "gym_lifts", "players"
+  add_foreign_key "match_penalties", "matches"
+  add_foreign_key "match_penalties", "players"
+  add_foreign_key "match_stats", "matches"
   add_foreign_key "match_stats", "players"
 end

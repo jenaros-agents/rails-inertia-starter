@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match: one
+  player: one
+  penalty_type: "High Tackle"
+  minute: 45
+  description: "Dangerous high tackle"
+
+two:
+  match: two
+  player: two
+  penalty_type: "Offside"
+  minute: 32
+  description: "Accidental offside"
