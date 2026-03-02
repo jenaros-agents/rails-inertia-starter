@@ -1,21 +1,31 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  opponent: MyString
-  match_date: 2026-03-01 19:38:27
-  venue: MyString
-  home_score: 1
-  away_score: 1
-  result: MyString
-  youtube_url: MyString
-  notes: MyText
+  opponent: "Argentina"
+  match_date: 2026-02-28 19:38:27
+  venue: "Buenos Aires"
+  home_score: 25
+  away_score: 20
+  result: win
+  youtube_url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+  notes: "Great match!"
 
 two:
-  opponent: MyString
-  match_date: 2026-03-01 19:38:27
-  venue: MyString
-  home_score: 1
-  away_score: 1
-  result: MyString
-  youtube_url: MyString
-  notes: MyText
+  opponent: "Chile"
+  match_date: 2026-02-22 19:38:27
+  venue: "Santiago"
+  home_score: 15
+  away_score: 22
+  result: loss
+  youtube_url: https://youtu.be/dQw4w9WgXcQ
+  notes: "Tough loss"
+
+three:
+  opponent: "Uruguay"
+  match_date: 2026-02-15 19:38:27
+  venue: "Montevideo"
+  home_score: 20
+  away_score: 20
+  result: draw
+  youtube_url:
+  notes: "Draw match"

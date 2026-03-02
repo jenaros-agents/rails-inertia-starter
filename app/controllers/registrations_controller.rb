@@ -1,8 +1,8 @@
 class RegistrationsController < ApplicationController
-  before_action :redirect_if_authenticated, only: [:new, :create]
+  before_action :redirect_if_authenticated, only: [ :new, :create ]
 
   def new
-    render inertia: 'Registrations/New'
+    render inertia: "Registrations/New"
   end
 
   def create
@@ -10,9 +10,9 @@ class RegistrationsController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Account created successfully'
+      redirect_to root_path, notice: "Account created successfully"
     else
-      render inertia: 'Registrations/New', props: {
+      render inertia: "Registrations/New", props: {
         errors: @user.errors.full_messages
       }, status: :unprocessable_entity
     end

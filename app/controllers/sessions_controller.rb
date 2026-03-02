@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
-  before_action :redirect_if_authenticated, only: [:new, :create]
+  before_action :redirect_if_authenticated, only: [ :new, :create ]
 
   def new
-    render inertia: 'Sessions/New'
+    render inertia: "Sessions/New"
   end
 
   def create
@@ -10,15 +10,15 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to root_path, notice: 'Signed in successfully'
+      redirect_to root_path, notice: "Signed in successfully"
     else
-      redirect_to new_session_path, alert: 'Invalid email or password'
+      redirect_to new_session_path, alert: "Invalid email or password"
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path, notice: 'Signed out successfully'
+    redirect_to root_path, notice: "Signed out successfully"
   end
 
   private

@@ -4,7 +4,7 @@ class AddIndexesAndConstraintsToMatches < ActiveRecord::Migration[8.1]
     add_index :matches, :match_date
 
     # Add composite index on match_penalties(match_id, player_id) for query performance
-    add_index :match_penalties, [:match_id, :player_id]
+    add_index :match_penalties, [ :match_id, :player_id ]
 
     # Add NOT NULL constraints for required fields in match_penalties
     change_column_null :match_penalties, :penalty_type, false

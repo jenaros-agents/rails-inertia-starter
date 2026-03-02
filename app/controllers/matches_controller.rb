@@ -1,10 +1,10 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :edit, :update, :destroy]
+  before_action :set_match, only: [ :show, :edit, :update, :destroy ]
 
   # GET /matches
   def index
     @matches = Match.recent
-    render inertia: 'Matches/Index', props: {
+    render inertia: "Matches/Index", props: {
       matches: @matches.map do |match|
         {
           id: match.id,
@@ -22,7 +22,7 @@ class MatchesController < ApplicationController
 
   # GET /matches/1
   def show
-    render inertia: 'Matches/Show', props: {
+    render inertia: "Matches/Show", props: {
       match: {
         id: @match.id,
         opponent: @match.opponent,
@@ -74,7 +74,7 @@ class MatchesController < ApplicationController
   # GET /matches/new
   def new
     @match = Match.new
-    render inertia: 'Matches/New', props: {
+    render inertia: "Matches/New", props: {
       match: {
         opponent: @match.opponent,
         match_date: @match.match_date,
@@ -90,7 +90,7 @@ class MatchesController < ApplicationController
 
   # GET /matches/1/edit
   def edit
-    render inertia: 'Matches/Edit', props: {
+    render inertia: "Matches/Edit", props: {
       match: {
         id: @match.id,
         opponent: @match.opponent,
@@ -110,9 +110,9 @@ class MatchesController < ApplicationController
     @match = Match.new(match_params)
 
     if @match.save
-      redirect_to @match, notice: 'Match was successfully created.'
+      redirect_to @match, notice: "Match was successfully created."
     else
-      render inertia: 'Matches/New', props: {
+      render inertia: "Matches/New", props: {
         match: {
           opponent: @match.opponent,
           match_date: @match.match_date,
@@ -131,9 +131,9 @@ class MatchesController < ApplicationController
   # PATCH/PUT /matches/1
   def update
     if @match.update(match_params)
-      redirect_to @match, notice: 'Match was successfully updated.'
+      redirect_to @match, notice: "Match was successfully updated."
     else
-      render inertia: 'Matches/Edit', props: {
+      render inertia: "Matches/Edit", props: {
         match: {
           id: @match.id,
           opponent: @match.opponent,
@@ -153,7 +153,7 @@ class MatchesController < ApplicationController
   # DELETE /matches/1
   def destroy
     @match.destroy
-    redirect_to matches_url, notice: 'Match was successfully deleted.'
+    redirect_to matches_url, notice: "Match was successfully deleted."
   end
 
   private
@@ -162,7 +162,7 @@ class MatchesController < ApplicationController
   def set_match
     @match = Match.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to matches_url, alert: 'Match not found.'
+    redirect_to matches_url, alert: "Match not found."
   end
 
   # Only allow a list of trusted parameters through.

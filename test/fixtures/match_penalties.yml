@@ -3,13 +3,13 @@
 one:
   match: one
   player: one
-  penalty_type: MyString
-  minute: 1
-  description: MyText
+  penalty_type: "High Tackle"
+  minute: 45
+  description: "Dangerous high tackle"
 
 two:
   match: two
   player: two
-  penalty_type: MyString
-  minute: 1
-  description: MyText
+  penalty_type: "Offside"
+  minute: 32
+  description: "Accidental offside"

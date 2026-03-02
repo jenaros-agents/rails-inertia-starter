@@ -1,10 +1,10 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only: [:show, :edit, :update, :destroy]
+  before_action :set_player, only: [ :show, :edit, :update, :destroy ]
 
   # GET /players
   def index
     @players = Player.order(:name)
-    render inertia: 'Players/Index', props: {
+    render inertia: "Players/Index", props: {
       players: @players.map do |player|
         {
           id: player.id,
@@ -20,7 +20,7 @@ class PlayersController < ApplicationController
 
   # GET /players/1
   def show
-    render inertia: 'Players/Show', props: {
+    render inertia: "Players/Show", props: {
       player: {
         id: @player.id,
         name: @player.name,
@@ -66,7 +66,7 @@ class PlayersController < ApplicationController
   # GET /players/new
   def new
     @player = Player.new
-    render inertia: 'Players/New', props: {
+    render inertia: "Players/New", props: {
       player: {
         name: @player.name,
         position: @player.position,
@@ -79,7 +79,7 @@ class PlayersController < ApplicationController
 
   # GET /players/1/edit
   def edit
-    render inertia: 'Players/Edit', props: {
+    render inertia: "Players/Edit", props: {
       player: {
         id: @player.id,
         name: @player.name,
@@ -96,9 +96,9 @@ class PlayersController < ApplicationController
     @player = Player.new(player_params)
 
     if @player.save
-      redirect_to @player, notice: 'Player was successfully created.'
+      redirect_to @player, notice: "Player was successfully created."
     else
-      render inertia: 'Players/New', props: {
+      render inertia: "Players/New", props: {
         player: {
           name: @player.name,
           position: @player.position,
@@ -114,9 +114,9 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1
   def update
     if @player.update(player_params)
-      redirect_to @player, notice: 'Player was successfully updated.'
+      redirect_to @player, notice: "Player was successfully updated."
     else
-      render inertia: 'Players/Edit', props: {
+      render inertia: "Players/Edit", props: {
         player: {
           id: @player.id,
           name: @player.name,
@@ -133,7 +133,7 @@ class PlayersController < ApplicationController
   # DELETE /players/1
   def destroy
     @player.destroy
-    redirect_to players_url, notice: 'Player was successfully deleted.'
+    redirect_to players_url, notice: "Player was successfully deleted."
   end
 
   private
